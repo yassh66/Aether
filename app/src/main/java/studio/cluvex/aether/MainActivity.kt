@@ -60,8 +60,8 @@ import studio.cluvex.aether.model.ConnectionState
 import studio.cluvex.aether.model.isBusy
 import studio.cluvex.aether.model.isConnected
 import studio.cluvex.aether.ui.HomeScreen
+import studio.cluvex.aether.ui.YasHomeScreen
 import studio.cluvex.aether.ui.LoginCodeDialog
-import studio.cluvex.aether.ui.announcements.WhatsNewGate
 import studio.cluvex.aether.ui.theme.AetherTheme
 import java.io.File
 
@@ -308,7 +308,7 @@ class MainActivity : ComponentActivity() {
                     // a prompt that only exists on one screen is one they miss.
                     // Renders nothing unless a request is outstanding.
                     LoginCodeDialog()
-                        HomeScreen(
+                    YasHomeScreen(
                             state = state,
                             profile = profile ?: ConnectionProfile(),
                             connectedSince = connectedSince,
@@ -329,8 +329,7 @@ class MainActivity : ComponentActivity() {
                             onExportPresets = { presetExportLauncher.launch("Aether-1.6.0-presets.json") },
                             presetBusy = presetsBusy || toggleInFlight.get(),
                         )
-                        // Current-version notice; no introductory pager gate.
-                        WhatsNewGate()
+
                         importPreview?.let { preview ->
                             AlertDialog(onDismissRequest = { importPreview = null },
                                 title = { Text(getString(R.string.preset_import)) },

@@ -1,6 +1,6 @@
 {
-  "name": "Aether",
-  "description": "Aether VPN and network proxy client for secure and private connections.",
+  "name": "YAS VPN",
+  "description": "YAS VPN - Fast, private, censorship-free connection with high-speed stealth transports.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

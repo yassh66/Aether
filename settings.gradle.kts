@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Aether"
+rootProject.name = "YAS VPN"
 include(":app")

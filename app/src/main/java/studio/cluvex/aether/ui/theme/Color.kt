@@ -89,3 +89,20 @@ val CardSubSurface = Navy800
 val CardTextPrimary = OnDark
 val CardTextMuted = OnDarkMuted
 val CardTextDim = OnDarkDim
+
+// ---- YAS VPN Premium Palette ---------------------------------------------
+val YasBackground = Color(0xFF050813)
+val YasBackgroundSecondary = Color(0xFF090E1C)
+val YasViolet = Color(0xFF8B5CF6)
+val YasVioletLight = Color(0xFFA78BFA)
+val YasVioletDim = Color(0xFF2E1065)
+val YasCyan = Color(0xFF06B6D4)
+val YasCyanLight = Color(0xFF67E8F9)
+val YasCyanDim = Color(0xFF164E63)
+val YasBlue = Color(0xFF3B82F6)
+val YasBlueLight = Color(0xFF60A5FA)
+val YasMint = Color(0xFF10B981)
+val YasMintLight = Color(0xFF34D399)
+val YasCardBackground = Color(0xCC0D1527)
+val YasCardBorder = Color(0x338B5CF6)
+val YasCardBorderCyan = Color(0x3306B6D4)
