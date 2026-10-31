@@ -6,6 +6,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 // Human-friendly ABI -> versionCode offset so each split APK gets a unique code.
@@ -229,6 +230,12 @@ android {
     // externalNativeBuild / CMake step in the Gradle build.
 
     signingConfigs {
+        create("debugConfig") {
+            storeFile = file("${rootDir}/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
         create("release") {
             // Signature schemes: v2 + v3, NOT v1.
             //
@@ -262,6 +269,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("debugConfig")
+        }
         release {
             isMinifyEnabled = false
             isShrinkResources = false
@@ -295,7 +305,7 @@ android {
     // Produce one APK per ABI + a universal one -> exactly the 3 release files.
     splits {
         abi {
-            isEnable = true
+            isEnable = false
             reset()
             include("arm64-v8a", "armeabi-v7a", "x86_64")
             isUniversalApk = true
@@ -418,4 +428,9 @@ gradle.projectsEvaluated {
             binaryResultsDirectory.set(file("$destination/${project.name}/$name/binary"))
         }
     }
+}
+
+secrets {
+    propertiesFileName = ".env"
+    defaultPropertiesFileName = ".env.example"
 }

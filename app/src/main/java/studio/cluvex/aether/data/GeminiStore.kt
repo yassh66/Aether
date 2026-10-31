@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import studio.cluvex.aether.BuildConfig
 import studio.cluvex.aether.ai.AiModelPolicy
 
 /**
@@ -103,8 +104,10 @@ class GeminiStore(private val context: Context) {
     private val secrets = SecretStore(context)
 
     val settings: Flow<AiSettings> = context.aiDataStore.data.map { prefs ->
+        val vaultKey = secrets.read(SecretStore.GEMINI_KEY)
+        val effectiveKey = vaultKey.ifBlank { BuildConfig.GEMINI_API_KEY.trim() }
         AiSettings(
-            apiKey = secrets.read(SecretStore.GEMINI_KEY),
+            apiKey = effectiveKey,
             model = prefs[Keys.model] ?: "",
             discoveredModels = prefs[Keys.models]
                 ?.split(",")?.map { it.trim() }?.filter { it.isNotEmpty() } ?: emptyList(),
